@@ -1,0 +1,65 @@
+version: '2.1'
+services:
+  ### Nginx Container #######################################
+  nginx:
+    image: nginx:1.14.2
+    container_name: Jade-nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes_from:
+      - www
+    volumes:
+      - ./nginx/cert/jader.me:/etc/nginx/cert/jader.me
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+    environment: 
+      TZ: Asia/Shanghai
+    links:
+      - php
+    networks:
+      - web_server_network
+
+  ### PHP Container #########################################
+  php:
+    image: php:7.2-fpm
+    container_name: Jade-php
+    volumes_from:
+      - www
+    environment: 
+      TZ: Asia/Shanghai
+    networks:
+      - web_server_network
+
+  ### MySQL Container #######################################
+  mysql:
+    image: mysql:5.7.25
+    container_name: Jade-mysql
+    volumes_from:
+      - www
+    ports:
+      - 3306:3306
+    volumes:ll
+      - ./mysql/conf:/etc/mysql/conf.d
+    environment:
+      MYSQL_DATABASE: jade
+      MYSQL_USER: Jade
+      MYSQL_PASSWORD: Jade@94118 
+      MYSQL_ROOT_PASSWORD: JadeRoot@94118
+      TZ: Asia/Shanghai
+    networks:
+      - web_server_network
+
+  ### Web-Root Container ####################################
+  www:
+    image: tianon/true
+    container_name: Jade-www
+    volumes:
+      - ./www:/usr/share/nginx/html
+      - ./mysql/data:/var/lib/mysql
+    networks:
+      - web_server_network
+
+networks:
+  web_server_network:
+    driver: bridge
