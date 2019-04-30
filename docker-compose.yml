@@ -10,7 +10,7 @@ services:
     volumes_from:
       - www
     volumes:
-      - ./nginx/cert/jader.me:/etc/nginx/cert/jader.me
+      - ./nginx/cert:/etc/nginx/cert
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d/
     environment: 
@@ -44,7 +44,7 @@ services:
     environment:
       MYSQL_DATABASE: jade
       MYSQL_USER: Jade
-      MYSQL_PASSWORD: Jade@94118 
+      MYSQL_PASSWORD: Jade@94118
       MYSQL_ROOT_PASSWORD: JadeRoot@94118
       TZ: Asia/Shanghai
     networks:
