@@ -18,5 +18,6 @@ $ git clone https://github.com/JaderH/JadeDock.git
 
 ```
 $ cd /data/JadeDock   // 进入项目根目录
+$ cp .env.example .env  // 配置相关选项
 $ docker-compose up -d   // 容器编排命令
 ```
