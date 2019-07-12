@@ -1,8 +1,9 @@
-version: '2.1'
+version: '2.4'
+
 services:
   ### Nginx Container #######################################
   nginx:
-    image: nginx:1.14.2
+    image: nginx:stable-alpine
     container_name: Jade-nginx
     ports:
       - 80:80
@@ -13,53 +14,65 @@ services:
       - ./nginx/cert:/etc/nginx/cert
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d/
+      - ./logs/nginx:/var/log/nginx
     environment: 
       TZ: Asia/Shanghai
     links:
       - php
     networks:
-      - web_server_network
+      server_network:
+        ipv4_address: ${NGINX_SERVER_IP}
 
   ### PHP Container #########################################
   php:
-    image: php:7.2-fpm
+    image: jaderh/kitchen-php:latest
     container_name: Jade-php
     volumes_from:
       - www
+    volumes:
+      - ./php/conf/www.conf /usr/local/etc/php-fpm.d/
+      - ./logs/php:/var/log/php
     environment: 
       TZ: Asia/Shanghai
+    links:
+      - mysql
     networks:
-      - web_server_network
+      server_network:
+        ipv4_address: ${PHP_SERVER_IP}
 
   ### MySQL Container #######################################
   mysql:
-    image: mysql:5.7.25
+    image: mysql:8.0.13
     container_name: Jade-mysql
-    volumes_from:
-      - www
     ports:
       - 3306:3306
-    volumes:ll
+    volumes:
       - ./mysql/conf:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
     environment:
-      MYSQL_DATABASE: jade
-      MYSQL_USER: Jade
-      MYSQL_PASSWORD: Jade@94118
-      MYSQL_ROOT_PASSWORD: JadeRoot@94118
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       TZ: Asia/Shanghai
     networks:
-      - web_server_network
+      server_network:
+        ipv4_address: ${MYSQL_SERVER_IP}
 
   ### Web-Root Container ####################################
   www:
     image: tianon/true
     container_name: Jade-www
     volumes:
-      - ./www:/usr/share/nginx/html
-      - ./mysql/data:/var/lib/mysql
-    networks:
-      - web_server_network
+      - ${WWW_PATH}:/data/www:rw
+    stdin_open: true
+    tty: true
 
-networks:
-  web_server_network:
+networks: 
+  server_network:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: "${SERVER_SUBNET}"
