@@ -19,6 +19,7 @@ services:
       TZ: Asia/Shanghai
     links:
       - php
+      - redis
     networks:
       server_network:
         ipv4_address: ${NGINX_SERVER_IP}
@@ -62,7 +63,7 @@ services:
 
   ### Redis Container #######################################
   redis:
-    build: redis:5.0.5-alpine3.9
+    image: redis:5.0.5-alpine3.10
     container_name: Jade-redis
     ports:
       - 6379:6379
