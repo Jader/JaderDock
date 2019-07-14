@@ -60,6 +60,21 @@ services:
       server_network:
         ipv4_address: ${MYSQL_SERVER_IP}
 
+  ### Redis Container #######################################
+  redis:
+    build: redis:5.0.5-alpine3.9
+    container_name: Jade-redis
+    ports:
+      - 6379:6379
+    volumes:
+      - "./redis/data:/data"
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+      - TZ=Asia/Shanghai
+    networks:
+      server_network:
+        ipv4_address: ${REDIS_SERVER_IP}
+
   ### Web-Root Container ####################################
   www:
     image: tianon/true

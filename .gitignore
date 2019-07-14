@@ -1,3 +1,7 @@
-!.gitignore
+/logs/mysql/*
+/logs/nginx/*
+/logs/php/*
+/mysql/data/*
+/redis/data/*
 .idea
 .env
