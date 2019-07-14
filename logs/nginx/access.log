@@ -1,8 +1,0 @@
-172.16.110.1 - - [12/Jul/2019:16:55:05 +0800] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" "-""-"
-172.16.110.1 - - [12/Jul/2019:16:55:05 +0800] "GET /favicon.ico HTTP/1.1" 502 552 "https://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" "-""-"
-172.16.110.1 - - [12/Jul/2019:16:55:07 +0800] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" "-""-"
-172.16.110.1 - - [12/Jul/2019:16:55:07 +0800] "GET /favicon.ico HTTP/1.1" 502 552 "https://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" "-""-"
-172.16.110.1 - - [12/Jul/2019:16:55:10 +0800] "GET / HTTP/1.1" 502 552 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" "-""-"
-172.16.110.1 - - [12/Jul/2019:16:55:10 +0800] "GET /favicon.ico HTTP/1.1" 502 552 "https://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" "-""-"
-172.16.110.1 - - [12/Jul/2019:17:02:59 +0800] "GET / HTTP/1.1" 200 26948 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" "-""-"
-172.16.110.1 - - [12/Jul/2019:17:02:59 +0800] "GET /favicon.ico HTTP/1.1" 200 26910 "https://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36" "-""-"
