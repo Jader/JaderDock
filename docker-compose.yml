@@ -48,9 +48,9 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./mysql/conf:/etc/mysql/conf.d
       - ./mysql/data:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
@@ -65,12 +65,12 @@ services:
   redis:
     image: redis:5.0.5-alpine3.10
     container_name: Jade-redis
+    command: redis-server --requirepass ${REDIS_PASSWORD}
     ports:
       - 6379:6379
     volumes:
       - ./redis/data:/data
     environment:
-      - REDIS_PASSWORD=${REDIS_PASSWORD}
       - TZ=Asia/Shanghai
     networks:
       server_network:
