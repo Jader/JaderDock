@@ -13,7 +13,7 @@ services:
     volumes:
       - ./nginx/cert:/etc/nginx/cert
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/conf.d:/etc/nginx/conf.d/
+      - ./nginx/conf.d:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx
     environment: 
       TZ: Asia/Shanghai
@@ -31,7 +31,7 @@ services:
     volumes_from:
       - www
     volumes:
-      - ./php/conf/www.conf /usr/local/etc/php-fpm.d/
+      - ./php/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
       - ./logs/php:/var/log/php
     environment: 
       TZ: Asia/Shanghai
@@ -68,7 +68,7 @@ services:
     ports:
       - 6379:6379
     volumes:
-      - "./redis/data:/data"
+      - ./redis/data:/data
     environment:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
       - TZ=Asia/Shanghai
@@ -81,9 +81,7 @@ services:
     image: tianon/true
     container_name: Jade-www
     volumes:
-      - ${WWW_PATH}:/data/www:rw
-    stdin_open: true
-    tty: true
+      - ${WWW_PATH}:/data/www
 
 networks: 
   server_network:
