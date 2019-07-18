@@ -1,4 +1,4 @@
-# 使用 Docker 快速部署简易的 LNMP 环境
+# 使用 Docker 快速部署简易的 Ngixn + PHP + MySQL + Redis 环境
 
 ## 部署步骤
 
