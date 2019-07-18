@@ -38,3 +38,11 @@ long_query_time=3
 slow-query-log-file=/var/log/mysql/mysql.slow.log
 log-error=/var/log/mysql/mysql.error.log
 ```
+
+### 2、连接 MySQL 响应慢
+
+在 `mysql/conf/my.cnf` 文件中增加如下配置
+
+```
+skip-name-resolve
+```
