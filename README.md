@@ -11,7 +11,7 @@
 ### 2、获取部署脚本
 
 ```
-$ git clone https://github.com/JaderH/JadeDock.git
+$ git clone https://github.com/Jader/JadeDock.git
 ```
 
 ### 3、运行容器编排
