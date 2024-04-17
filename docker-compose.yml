@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3'
 
 services:
   ### Nginx Container #######################################
@@ -8,13 +8,12 @@ services:
     ports:
       - 80:80
       - 443:443
-    volumes_from:
-      - www
     volumes:
       - ./nginx/cert:/etc/nginx/cert
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./logs/nginx:/var/log/nginx
+      - ${WWW_PATH}:/data/www
     environment: 
       TZ: Asia/Shanghai
     links:
@@ -26,17 +25,16 @@ services:
 
   ### PHP Container #########################################
   php:
-    image: jaderh/kitchen-php:latest
+    image: jaderh/php:mingyuanyun
     container_name: Jade-php
-    volumes_from:
-      - www
     volumes:
       - ./php/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
       - ./logs/php:/var/log/php
+      - ${WWW_PATH}:/data/www
     environment: 
       TZ: Asia/Shanghai
     links:
-      - mysql
+      - redis
     networks:
       server_network:
         ipv4_address: ${PHP_SERVER_IP}
@@ -75,13 +73,6 @@ services:
     networks:
       server_network:
         ipv4_address: ${REDIS_SERVER_IP}
-
-  ### Web-Root Container ####################################
-  www:
-    image: tianon/true
-    container_name: Jade-www
-    volumes:
-      - ${WWW_PATH}:/data/www
 
 networks: 
   server_network:
