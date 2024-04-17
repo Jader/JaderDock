@@ -26,7 +26,7 @@ services:
 
   ### PHP Container #########################################
   php:
-    image: jaderh/kitchen-php:latest
+    image: jaderh/php:latest
     container_name: Jade-php
     volumes_from:
       - www
